@@ -1,0 +1,53 @@
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    .card{
+        padding: 15px;
+        margin-bottom: 15px;
+        min-width: 400px;
+
+        .header,
+        .body,
+        .footer{
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .header{
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .body{}
+
+        .footer{
+            min-width: 100%;         
+
+            .options{
+                font-size: .9rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                a{
+                    text-decoration: none;
+                }
+
+            }
+        }
+    
+    }
+
+    .out-footer{
+        font-size: .7rem;
+        opacity: .6;
+        min-height: 50px;
+    }
+}
