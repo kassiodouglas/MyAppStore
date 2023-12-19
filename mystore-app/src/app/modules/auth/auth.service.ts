@@ -39,9 +39,9 @@ export class AuthService {
   }
 
   /** Realiza o pré registro na api*/
-  preRegister(): Observable<any> {
-    let url = this.urlAuth + "/pre-register"
-    return this.http.get<any>(url)
+  registerNewuser(data:any): Observable<any> {
+    let url = this.urlAuth + "/user/register"
+    return this.http.post<any>(url, data)
   }
 
   /** Destroi todos os dados da sessao */

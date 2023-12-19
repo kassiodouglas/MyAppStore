@@ -4,6 +4,8 @@ import { StoreComponent } from './store.component';
 import { RouterModule } from '@angular/router';
 import { RoutesStore } from './store.routes'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MeComponent } from './pages/me/me.component';
+import { MePipe } from 'src/app/pipes/me.pipe';
 
 
 @NgModule({
@@ -13,8 +15,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     RoutesStore
   ],
   declarations: [
-    StoreComponent, 
-    DashboardComponent
+    StoreComponent,
+    DashboardComponent,
+    MeComponent,
+    MePipe
   ]
 })
 export class StoreModule { }

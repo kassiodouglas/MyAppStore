@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeIn } from 'src/assets/animations';
-import { FormBuilder, Validators, ValidationErrors, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, ValidationErrors, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import * as Notiflix from 'notiflix';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   /** Contem o formulario de login */
   formLogin
 
+  /** Contem o formulario de novo registro */
+  formNewLogin
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +40,14 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     })
 
+    this.formNewLogin = this.formBuilder.group({
+      name: ['',[Validators.required]],
+      email: ['',[Validators.required, Validators.email]],
+      login: ['',[Validators.required]],
+      password: ['',[Validators.required]],
+      password_confirmation: ['', [Validators.required, this.passwordMatchValidator.bind(this)]],
+    })
+
   }
 
 
@@ -44,6 +55,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  /** Verifica se as senhas são iguais no campo de confirmação */
+  passwordMatchValidator(control:AbstractControl): { [key: string]: boolean } | null {
+
+    if(!this.formNewLogin)
+      return null
+
+    const password = this.formNewLogin.get('password')?.value
+    const confirmPassword = this.formNewLogin.get('password_confirmation')?.value
+
+    // Verifica se as senhas coincidem
+    return password === confirmPassword ? null : { 'passwordMismatch': true };
+  }
 
   /** Troca a visualização da tela */
   changeScreen() {
@@ -84,8 +108,6 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         Notiflix.Loading.remove()
 
-
-
         if (response.access_token) {
           this.authService.setToken(response.access_token)
 
@@ -102,13 +124,38 @@ export class LoginComponent implements OnInit {
 
       },
       error: (err) => {
-        Notiflix.Loading.remove()
-
         console.error(err)
-        Notiflix.Notify.failure(err.message)
+
+        Notiflix.Loading.remove()
+        if(err.error.status == 401){
+          Notiflix.Notify.failure("Usuário ou senha inválidos!")
+        }
+
       }
     })
 
+
+  }
+
+  /** Submit do form de novo usuario */
+  onNewRegisterSubmit(){
+
+    if (!this.formNewLogin.valid) {
+      Notiflix.Notify.warning('Verifique os campos obrigatórios!')
+      return
+    }
+
+    Notiflix.Loading.circle('Registrando...')
+
+
+    this.authService.registerNewuser(this.formNewLogin.value).subscribe({
+      next:(response:any)=>{
+
+        this.changeScreen()
+        Notiflix.Loading.remove()
+        Notiflix.Notify.success("Usuário registrado com sucesso! Faça o login para acessar.")
+      }
+    })
 
   }
 }

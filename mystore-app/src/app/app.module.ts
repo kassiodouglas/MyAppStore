@@ -23,8 +23,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     BrowserModule,
     RoutesApp,
     NgbModule,
-    AuthModule,
-    StoreModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],

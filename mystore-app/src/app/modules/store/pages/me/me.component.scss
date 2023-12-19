@@ -1,0 +1,63 @@
+.cover {
+  height: 250px;
+  background-color: antiquewhite;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+
+  .btn-edit-avatar {
+    font-size: 1rem;
+    position: absolute;
+    bottom: 50px;
+    background: transparent;
+    color: white;
+    opacity: .4;
+    transition: all ease-in-out 0.2s;
+
+    &:hover {
+      background: #000;
+      opacity: 1;
+    }
+  }
+
+  .btn-edit-cover {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    opacity: .5;
+    background: transparent;
+    color: white;
+    transition: all ease-in-out 0.2s;
+
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .avatar {
+    font-size: 10rem;
+    color: #fff;
+    min-height: 150px;
+    min-width: 150px;
+    border-radius: 360px;
+    border: 5px solid rgb(255, 255, 255, 0.352);
+    background-repeat: no-repeat;
+    background-position: center center;
+
+  }
+
+  .name {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .job {
+    font-size: 1.2rem;
+    opacity: .8;
+    color: white;
+
+  }
+}

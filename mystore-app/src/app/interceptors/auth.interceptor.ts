@@ -21,20 +21,18 @@ export class AuthInterceptor implements HttpInterceptor {
   counter: number = 0
   isRefreshing: boolean = false
 
-
-  notifyOptions:any = {  position: 'center-bottom', failure:{background: 'purple'}}
-
+  notifyOptions: any = { failure: { background: 'purple' } }
 
   constructor(
     private router: Router,
     private authService: AuthService
   ) {
 
-   }
+  }
 
 
+  /** Intercepa a requisição */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
 
     const token = this.authService.getToken()
 
@@ -47,11 +45,22 @@ export class AuthInterceptor implements HttpInterceptor {
     )
   }
 
+  /** Clona a requisição adicionando o token */
+  cloneRequestWithToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
+    return request.clone({ headers: request.headers.set("Authorization", "Bearer " + token) })
+  }
 
+  /** Captura o erro (se houver) */
   handleAuthError(err: HttpErrorResponse, next: HttpHandler, req: HttpRequest<any>): Observable<any> {
-    if (err && err.status == 401 && !this.isRefreshing) {
+
+    if (err && err.status == 401 && err.url?.includes('/auth/login')) {
+      return this.error401Auth(err, next, req)
+    }
+
+    else if (err && err.status == 401 && !this.isRefreshing) {
       return this.error401(next, req)
     }
+
     else if (err.status == 500) {
       this.error500(err, next, req)
     }
@@ -61,11 +70,12 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req);
   }
 
-
-  cloneRequestWithToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
-    return request.clone({ headers: request.headers.set("Authorization", "Bearer " + token) })
+  /** Trata erro 401 no ato do login */
+  error401Auth(err: HttpErrorResponse, ext: HttpHandler, req: HttpRequest<any>): Observable<HttpEvent<any>> {
+    throw { message: "User or password are invalids", error: err }
   }
 
+  /** Trata erro 401 em requisições gerais */
   error401(next: HttpHandler, req: HttpRequest<any>) {
     this.isRefreshing = true;
 
@@ -81,22 +91,25 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((refreshErr: any) => {
         this.authService.destroySession();
 
-        Notiflix.Loading.dots('redirecionando...');
+        Notiflix.Loading.dots('Redirecionando...');
         this.router.navigateByUrl('/auth')
         Notiflix.Loading.remove();
-        throw "Token has expired and can no longer be refreshed"
+        Notiflix.Notify.failure('Sua sessão expirou! Faça o login novamente', this.notifyOptions)
+
+        throw { message: "Token has expired and can no longer be refreshed", error: refreshErr }
       })
     );
   }
 
+  /** Trata o erro 500 em rotas gerais */
   error500(err: HttpErrorResponse, next: HttpHandler, req: HttpRequest<any>) {
-    console.error(err)
+
+    let message = err.message
 
     if (err.error.message.includes("Token") && err.error.message.includes("expired"))
-      Notiflix.Notify.failure("Sua sessão expirou!", this.notifyOptions)
-    else
-      Notiflix.Notify.failure("Erro no servidor. Tente novamente, se o erro persistir, contate o suporte!", this.notifyOptions)
-    throw err
+      message = "Your session has expired"
+
+    throw { message: message, error: err }
   }
 
 

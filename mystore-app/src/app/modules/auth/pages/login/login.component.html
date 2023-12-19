@@ -1,135 +1,287 @@
 <div class="container">
-
   <!-- login -->
   <div class="card border-0 bg-transparent h-100" *ngIf="screen" @fadeIn>
-
-    <div class="header" style="min-height: 100px;">
-        <img src="./assets/img/logo.svg" width="30%" class="rounded-circle shadow">
+    <div class="header" style="min-height: 100px">
+      <img
+        src="./assets/img/logo.svg"
+        width="30%"
+        class="rounded-circle shadow"
+      />
     </div>
 
     <div class="body">
-
       <form [formGroup]="formLogin" (submit)="onLoginFormSubmit()">
-
         <div class="mb-5">
-
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder=" " formControlName="login">
+            <input
+              type="text"
+              class="form-control"
+              placeholder=" "
+              formControlName="login"
+            />
             <label for="">Login</label>
-            <small class="text-white bg-danger rounded p-1"
-              *ngIf="formLogin.controls['login'].invalid && (formLogin.controls['login'].touched || formLogin.controls['login'].dirty)">
+            <small
+              class="text-white bg-danger rounded p-1"
+              *ngIf="
+                formLogin.controls['login'].invalid &&
+                (formLogin.controls['login'].touched ||
+                  formLogin.controls['login'].dirty)
+              "
+            >
               Login é obrigatório
             </small>
           </div>
 
-
           <div class="mb-3">
             <div class="input-group">
               <div class="form-floating">
-                <input [type]="seepass" class="form-control" placeholder=" " formControlName="password">
+                <input
+                  [type]="seepass"
+                  class="form-control"
+                  placeholder=" "
+                  formControlName="password"
+                />
                 <label for="">Senha</label>
               </div>
-              <button type="button" class="input-group-text" (click)="seePassword()" (mouseleave)="seePassword(true)">
-                <i [ngClass]="{'fa-eye-low-vision':seepass=='text','fa-eye':seepass=='password'}" class="fa-solid"></i>
+              <button
+                type="button"
+                class="input-group-text"
+                (click)="seePassword()"
+                (mouseleave)="seePassword(true)"
+              >
+                <i
+                  [ngClass]="{
+                    'fa-eye-low-vision': seepass == 'text',
+                    'fa-eye': seepass == 'password'
+                  }"
+                  class="fa-solid"
+                ></i>
               </button>
             </div>
-            <small class="text-white bg-danger rounded p-1"
-              *ngIf="formLogin.controls['password'].invalid && (formLogin.controls['password'].touched || formLogin.controls['password'].dirty)">
+            <small
+              class="text-white bg-danger rounded p-1"
+              *ngIf="
+                formLogin.controls['password'].invalid &&
+                (formLogin.controls['password'].touched ||
+                  formLogin.controls['password'].dirty)
+              "
+            >
               Senha é obrigatória
             </small>
           </div>
-
         </div>
 
         <div class="w-100">
-          <button class="btn btn-dark w-100 py-3" type="submit" [disabled]="!formLogin.valid">Acessar</button>
+          <button
+            class="btn btn-dark w-100 py-3"
+            type="submit"
+            [disabled]="!formLogin.valid"
+          >
+            Acessar
+          </button>
         </div>
-
       </form>
-
-
     </div>
 
     <div class="footer">
       <div class="options">
-        <button class="btn btn-outline-secondary border-0" disabled>Esqueceu sua senha?</button>
-        <button class="btn btn-outline-secondary border-0" (click)="changeScreen()">Não tem cadastro?</button>
+        <button class="btn btn-outline-secondary border-0" disabled>
+          Esqueceu sua senha?
+        </button>
+        <button
+          class="btn btn-outline-secondary border-0"
+          (click)="changeScreen()"
+        >
+          Não tem cadastro?
+        </button>
       </div>
     </div>
-
   </div>
-
 
   <!-- new register -->
   <div class="card border-0 bg-transparent h-100" *ngIf="!screen" @fadeIn>
-
     <div class="header">
       <div class="d-flex justify-content-center flex-column align-items-center">
-        <img src="./assets/img/logo.svg" width="20%" class="rounded-circle shadow">
-        <!-- <div class="h4">Pré-cadastro</div> -->
+        <img
+          src="./assets/img/logo.svg"
+          width="20%"
+          class="rounded-circle shadow"
+        />
       </div>
     </div>
 
-    <div class="body">
-
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder=" ">
-        <label for="">Nome</label>
-      </div>
-
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" placeholder=" ">
-        <label for="">Email</label>
-      </div>
-
-
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" placeholder=" ">
-        <label for="">Login</label>
-      </div>
-
-
-      <div class="input-group mb-3">
-        <div class="form-floating">
-          <input [type]="seepass" class="form-control" placeholder=" ">
-          <label for="">Senha</label>
+    <form [formGroup]="formNewLogin" (submit)="onNewRegisterSubmit()">
+      <div class="body">
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder=" "
+            formControlName="name"
+          />
+          <label for="">Nome</label>
+          <small
+            class="text-white bg-danger rounded p-1"
+            *ngIf="
+              formNewLogin.controls['name'].invalid &&
+              (formNewLogin.controls['name'].touched ||
+                formNewLogin.controls['name'].dirty)
+            "
+          >
+            Nome é obrigatório
+          </small>
         </div>
-        <button type="button" class="input-group-text" (click)="seePassword()" (mouseleave)="seePassword(true)">
-          <i [ngClass]="{'fa-eye-low-vision':seepass=='text','fa-eye':seepass=='password'}" class="fa-solid"></i>
+
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            placeholder=" "
+            formControlName="email"
+          />
+          <label for="">Email</label>
+          <small
+            class="text-white bg-danger rounded p-1"
+            *ngIf="
+              formNewLogin.controls['email'].invalid &&
+              (formNewLogin.controls['email'].touched ||
+                formNewLogin.controls['email'].dirty)
+            "
+          >
+            Email é obrigatório
+          </small>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder=" "
+            autocomplete="off"
+            formControlName="login"
+          />
+          <label for="">Login</label>
+          <small
+            class="text-white bg-danger rounded p-1"
+            *ngIf="
+              formNewLogin.controls['login'].invalid &&
+              (formNewLogin.controls['login'].touched ||
+                formNewLogin.controls['login'].dirty)
+            "
+          >
+            Login é obrigatório
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="form-floating">
+              <input
+                [type]="seepass"
+                class="form-control"
+                placeholder=" "
+                autocomplete="off"
+                formControlName="password"
+              />
+              <label for="">Senha</label>
+            </div>
+            <button
+              type="button"
+              class="input-group-text"
+              (click)="seePassword()"
+              (mouseleave)="seePassword(true)"
+            >
+              <i
+                [ngClass]="{
+                  'fa-eye-low-vision': seepass == 'text',
+                  'fa-eye': seepass == 'password'
+                }"
+                class="fa-solid"
+              ></i>
+            </button>
+          </div>
+          <div class="d-flex flex-column">
+            <small
+              class="text-white bg-danger rounded p-1 mb-1"
+              *ngIf="
+                formNewLogin.controls['password'].hasError('required') &&
+                (formNewLogin.controls['password'].touched ||
+                  formNewLogin.controls['password'].dirty)
+              "
+            >
+              Senha é obrigatório
+            </small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <div class="form-floating">
+              <input
+                [type]="seepass_confirm"
+                class="form-control"
+                placeholder=" "
+                formControlName="password_confirmation"
+              />
+              <label for="">Confirmar senha</label>
+            </div>
+            <button
+              type="button"
+              class="input-group-text"
+              (click)="seePasswordConfirm()"
+              (mouseleave)="seePasswordConfirm(true)"
+            >
+              <i
+                [ngClass]="{
+                  'fa-eye-low-vision': seepass_confirm == 'text',
+                  'fa-eye': seepass_confirm == 'password'
+                }"
+                class="fa-solid"
+              ></i>
+            </button>
+          </div>
+          <div class="d-flex flex-column">
+            <small
+              class="text-white bg-danger rounded p-1 mb-1"
+              *ngIf="
+                formNewLogin.controls['password_confirmation'].hasError(
+                  'required'
+                ) &&
+                (formNewLogin.controls['password_confirmation'].touched ||
+                  formNewLogin.controls['password_confirmation'].dirty)
+              "
+            >
+              Confirmação de senha é obrigatório
+            </small>
+            <small
+              class="text-white bg-danger rounded p-1 mb-1"
+              *ngIf="
+                formNewLogin.controls['password_confirmation'].hasError(
+                  'passwordMismatch'
+                )
+              "
+            >
+              Senhas não coincidem.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex btn-group p-1">
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-dark w-25 py-2"
+          (click)="changeScreen()"
+        >
+          <i class="fa-solid fa-arrow-left"></i> acessar
+        </button>
+
+        <button type="submit" class="btn btn-sm btn-success w-75 py-2">
+          Salvar cadastro
         </button>
       </div>
-
-      <div class="input-group mb-3">
-        <div class="form-floating">
-          <input [type]="seepass_confirm" class="form-control" placeholder=" ">
-          <label for="">Confirmar senha</label>
-        </div>
-        <button type="button" class="input-group-text" (click)="seePasswordConfirm()" (mouseleave)="seePasswordConfirm(true)">
-          <i [ngClass]="{'fa-eye-low-vision':seepass_confirm=='text','fa-eye':seepass_confirm=='password'}"
-            class="fa-solid"></i>
-        </button>
-      </div>
-
-
-
-    </div>
-
-    <div class="d-flex btn-group p-1">
-
-      <button class="btn btn-sm btn-outline-dark w-25 py-2" (click)="changeScreen()">
-        <i class="fa-solid fa-arrow-left"></i> acessar
-      </button>
-
-      <button class="btn btn-sm btn-success w-75 py-2">
-        Salvar cadastro
-      </button>
-
-    </div>
-
-
-
+    </form>
   </div>
 
-  <div class="out-footer">Loginadv v1.0.0</div>
-
+  <div class="out-footer">MyAppStore v1.0.0</div>
 </div>

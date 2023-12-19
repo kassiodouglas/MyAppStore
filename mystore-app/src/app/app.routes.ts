@@ -4,7 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
 const routes: Routes = [
-  { path: "auth", canActivate: [AuthGuard], loadChildren: () => import("./modules/auth/auth.module").then((m) => m.AuthModule) },
+  { path: "auth", canActivate: [AuthGuard], loadChildren: () => import("./modules/auth/auth.module").then((m) => m.AuthModule)  },
 
   {
     path: "", canActivate: [AuthGuard], component:NavbarComponent,

@@ -8,14 +8,14 @@ import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     RoutesAuth,
     FormsModule,
     ReactiveFormsModule
   ],
   declarations: [
-    AuthComponent, 
-    LoginComponent, 
+    AuthComponent,
+    LoginComponent,
     LogoutComponent
   ]
 })
