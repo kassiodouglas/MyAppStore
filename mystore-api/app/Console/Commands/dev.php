@@ -29,16 +29,16 @@ class dev extends Command
         $this->warn("\n-------------------AMBIENTE EXECUTADO: $env");
 
 
+        $this->info("Resetando banco de dados");
+        $this->call('migrate:fresh');
+
+        // $this->info('Inserindo user inicial');
+        // $this->call('db:seed',['--class'=>'starter_user']);
 
 
 
 
-
-
-
-
-
-
+        $this->info("Subindo server");
         $this->call('serve',["--port"=>7071]);
     }
 }
