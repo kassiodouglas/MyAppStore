@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: "", canActivate: [AuthGuard], component:NavbarComponent,
     children: [
-      { path: "", canActivate: [AuthGuard], loadChildren: () => import("./modules/store/store.module").then((m) => m.StoreModule) },
+      { path: "", loadChildren: () => import("./modules/store/store.module").then((m) => m.StoreModule) },
     ]
   },
 
