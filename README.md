@@ -1,3 +1,4 @@
+## [Estudos]
 # MyAppStore
 Aplicação Angular 16 com backend em Laravel 10. Para estudos, testes, etc...
 
