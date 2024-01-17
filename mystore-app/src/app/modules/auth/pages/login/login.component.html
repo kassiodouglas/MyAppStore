@@ -20,19 +20,14 @@
               formControlName="login"
             />
             <label for="">Login</label>
-            <small
-              class="text-white bg-danger rounded p-1"
-              *ngIf="
-                formLogin.controls['login'].invalid &&
-                (formLogin.controls['login'].touched ||
-                  formLogin.controls['login'].dirty)
-              "
-            >
-              Login é obrigatório
-            </small>
+            <inputError
+              [form]="formLogin"
+              inputName="login"
+              [messages]="{ required: 'Login é obrigatório' }"
+            ></inputError>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 position-relative">
             <div class="input-group">
               <div class="form-floating">
                 <input
@@ -58,16 +53,14 @@
                 ></i>
               </button>
             </div>
-            <small
-              class="text-white bg-danger rounded p-1"
-              *ngIf="
-                formLogin.controls['password'].invalid &&
-                (formLogin.controls['password'].touched ||
-                  formLogin.controls['password'].dirty)
-              "
-            >
-              Senha é obrigatória
-            </small>
+            <inputError 
+              [form]="formLogin"
+              inputName="password"
+              [messages]="{
+                required: 'Senha é obrigatória',
+                minLength: 'Senha deve conter no mínimo 5 caracteres'
+              }"
+            ></inputError>
           </div>
         </div>
 
@@ -120,16 +113,11 @@
             formControlName="name"
           />
           <label for="">Nome</label>
-          <small
-            class="text-white bg-danger rounded p-1"
-            *ngIf="
-              formNewLogin.controls['name'].invalid &&
-              (formNewLogin.controls['name'].touched ||
-                formNewLogin.controls['name'].dirty)
-            "
-          >
-            Nome é obrigatório
-          </small>
+          <inputError
+            [form]="formNewLogin"
+            inputName="name"
+            [messages]="{ required: 'Nome é obrigatório' }"
+          ></inputError>
         </div>
 
         <div class="form-floating mb-3">
@@ -140,16 +128,14 @@
             formControlName="email"
           />
           <label for="">Email</label>
-          <small
-            class="text-white bg-danger rounded p-1"
-            *ngIf="
-              formNewLogin.controls['email'].invalid &&
-              (formNewLogin.controls['email'].touched ||
-                formNewLogin.controls['email'].dirty)
-            "
-          >
-            Email é obrigatório
-          </small>
+          <inputError
+            [form]="formNewLogin"
+            inputName="email"
+            [messages]="{
+            'required':'Email é obrigatório',
+            'email':'Formato não parece ser um email válido',
+            }"
+          ></inputError>
         </div>
 
         <div class="form-floating mb-3">
@@ -161,16 +147,11 @@
             formControlName="login"
           />
           <label for="">Login</label>
-          <small
-            class="text-white bg-danger rounded p-1"
-            *ngIf="
-              formNewLogin.controls['login'].invalid &&
-              (formNewLogin.controls['login'].touched ||
-                formNewLogin.controls['login'].dirty)
-            "
-          >
-            Login é obrigatório
-          </small>
+          <inputError
+            [form]="formNewLogin"
+            inputName="login"
+            [messages]="{ required: 'Login é obrigatório' }"
+          ></inputError>
         </div>
 
         <div class="mb-3">
@@ -180,7 +161,7 @@
                 [type]="seepass"
                 class="form-control"
                 placeholder=" "
-                autocomplete="off"
+                autocomplete="new-password"
                 formControlName="password"
               />
               <label for="">Senha</label>
@@ -200,18 +181,14 @@
               ></i>
             </button>
           </div>
-          <div class="d-flex flex-column">
-            <small
-              class="text-white bg-danger rounded p-1 mb-1"
-              *ngIf="
-                formNewLogin.controls['password'].hasError('required') &&
-                (formNewLogin.controls['password'].touched ||
-                  formNewLogin.controls['password'].dirty)
-              "
-            >
-              Senha é obrigatório
-            </small>
-          </div>
+          <inputError
+          [form]="formNewLogin"
+          inputName="password"
+          [messages]="{
+            required: 'Senha é obrigatória',
+            minLength: 'Senha deve conter no mínimo 5 caracteres'
+          }"
+        ></inputError>
         </div>
 
         <div class="mb-3">
@@ -221,6 +198,7 @@
                 [type]="seepass_confirm"
                 class="form-control"
                 placeholder=" "
+                autocomplete="new-password"
                 formControlName="password_confirmation"
               />
               <label for="">Confirmar senha</label>
@@ -240,30 +218,15 @@
               ></i>
             </button>
           </div>
-          <div class="d-flex flex-column">
-            <small
-              class="text-white bg-danger rounded p-1 mb-1"
-              *ngIf="
-                formNewLogin.controls['password_confirmation'].hasError(
-                  'required'
-                ) &&
-                (formNewLogin.controls['password_confirmation'].touched ||
-                  formNewLogin.controls['password_confirmation'].dirty)
-              "
-            >
-              Confirmação de senha é obrigatório
-            </small>
-            <small
-              class="text-white bg-danger rounded p-1 mb-1"
-              *ngIf="
-                formNewLogin.controls['password_confirmation'].hasError(
-                  'passwordMismatch'
-                )
-              "
-            >
-              Senhas não coincidem.
-            </small>
-          </div>
+          <inputError
+            [form]="formNewLogin"
+            inputName="password_confirmation"
+            [messages]="{
+            'required':'Confirmação de senha é obrigatória',
+            'minLength':'Senha deve conter no mínimo 5 caracteres',
+            'passwordMismatch':'Senhas não coincidem',
+            }"
+          ></inputError>
         </div>
       </div>
 

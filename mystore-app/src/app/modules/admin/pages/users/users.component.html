@@ -1,0 +1,125 @@
+<div class="container">
+
+    <titler [breadcumb]="true" title="<i class='fa-solid fa-users'></i> Gerenciamento de usuários"
+        subtitle="Crie novos usuários, atualize seus dados, gerencie suas permissões."></titler>
+
+
+    <div class="row mb-3">
+        <div class="col">
+
+            <button class="btn btn-light"> <i class="fa-solid fa-user-plus"></i> Usuário </button>
+
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col">
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <titler [level]="4" title="Novo usuário"></titler>
+
+                    <form [formGroup]="formNewLogin">
+                        <div class="row">
+
+                            <div class="col-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" placeholder=" " formControlName="name" />
+                                    <label for="">Nome</label>
+                                    <inputError [form]="formNewLogin" inputName="name"
+                                        [messages]="{ required: 'Nome é obrigatório' }"></inputError>
+                                </div>
+                            </div>
+
+
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" placeholder=" " formControlName="email" />
+                                    <label for="">Email</label>
+                                    <inputError [form]="formNewLogin" inputName="email" [messages]="{
+                              'required':'Email é obrigatório',
+                              'email':'Formato não parece ser um email válido',
+                              }"></inputError>
+                                </div>
+                            </div>
+
+
+                            <div class="col-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" placeholder=" " autocomplete="off"
+                                        formControlName="login" />
+                                    <label for="">Login</label>
+                                    <inputError [form]="formNewLogin" inputName="login"
+                                        [messages]="{ required: 'Login é obrigatório' }"></inputError>
+                                </div>
+                            </div>
+
+
+                            <div class="col-6">
+
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input [type]="seepass" class="form-control" placeholder=" "
+                                                autocomplete="new-password" formControlName="password" />
+                                            <label for="">Senha</label>
+                                        </div>
+                                        <button type="button" class="input-group-text" (click)="seePassword()"
+                                            (mouseleave)="seePassword(true)">
+                                            <i [ngClass]="{
+                                    'fa-eye-low-vision': seepass == 'text',
+                                    'fa-eye': seepass == 'password'
+                                  }" class="fa-solid"></i>
+                                        </button>
+                                    </div>
+                                    <inputError [form]="formNewLogin" inputName="password" [messages]="{
+                              required: 'Senha é obrigatória',
+                              minLength: 'Senha deve conter no mínimo 5 caracteres'
+                            }"></inputError>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="form-floating">
+                                            <input [type]="seepass_confirm" class="form-control" placeholder=" "
+                                                autocomplete="new-password" formControlName="password_confirmation" />
+                                            <label for="">Confirmar senha</label>
+                                        </div>
+                                        <button type="button" class="input-group-text" (click)="seePasswordConfirm()"
+                                            (mouseleave)="seePasswordConfirm(true)">
+                                            <i [ngClass]="{
+                                    'fa-eye-low-vision': seepass_confirm == 'text',
+                                    'fa-eye': seepass_confirm == 'password'
+                                  }" class="fa-solid"></i>
+                                        </button>
+                                    </div>
+                                    <inputError [form]="formNewLogin" inputName="password_confirmation" [messages]="{
+                              'required':'Confirmação de senha é obrigatória',
+                              'minLength':'Senha deve conter no mínimo 5 caracteres',
+                              'passwordMismatch':'Senhas não coincidem',
+                              }"></inputError>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-3 d-flex btn-group p-1">
+
+                                <button type="submit" class="btn btn-sm btn-success w-75 py-2">
+                                    Salvar cadastro
+                                </button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</div>

@@ -1,0 +1,24 @@
+.formerror{
+    position: absolute;
+    top:-3px; 
+    right: -3px; 
+    width: 15px; 
+    height: 15px;
+    transition: all ease-in-out 0.2s;
+
+    &:hover{
+        transform: scale(1.5) ;
+    }
+
+    li{
+        color: transparent;
+    }
+}
+
+.formerror-message{
+    list-style: none;
+    position: relative;
+    border-radius: 5px;
+    font-size: .7rem;
+    bottom: -5px;
+}

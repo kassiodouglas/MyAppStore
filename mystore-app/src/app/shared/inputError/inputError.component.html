@@ -1,0 +1,36 @@
+
+
+<ng-container *ngIf="styler=='notify' && instance && instance.touched  && instance.invalid || styler=='notify' && instance && instance.invalid && instance.dirty">
+  <div class="formerror rounded-circle bg-danger p-1 text-danger">
+
+    <li *ngIf="instance.hasError('required')" container="body" [ngbTooltip]="'&#9888;' + messages['required']"></li>
+
+    <li *ngIf="instance.hasError('email')" container="body"  [ngbTooltip]="'&#9888;' +  messages['email']"></li>
+
+    <li *ngIf="instance.hasError('minlength')" container="body"  [ngbTooltip]="'&#9888;' +  messages['minLength']"></li>
+
+    <li *ngIf="instance.hasError('maxlength')" container="body"  [ngbTooltip]="'&#9888;' +  messages['maxLength']"></li>
+
+    <li *ngIf="instance.hasError('pattern')" container="body"  [ngbTooltip]="'&#9888;' +  messages['pattern']"></li>
+
+    <li *ngIf="instance.hasError('passwordMismatch')" container="body"  [ngbTooltip]="'&#9888;' +  messages['passwordMismatch']"></li>
+
+  </div>
+</ng-container>
+
+<ng-container *ngIf="styler=='message' && instance && instance.touched  && instance.invalid || styler=='message' == instance && instance.invalid && instance.dirty">
+  <div class="formerror-message bg-danger p-1 text-white">
+
+    <li *ngIf="instance.hasError('required')" container="body">&#9888; {{messages['required']}}</li>
+
+    <li *ngIf="instance.hasError('email')" container="body">&#9888;{{messages['email']}}</li>
+
+    <li *ngIf="instance.hasError('minlength')" container="body">&#9888;{{messages['minLength']}}</li>
+
+    <li *ngIf="instance.hasError('maxlength')" container="body">&#9888;{{messages['maxLength']}}</li>
+
+    <li *ngIf="instance.hasError('pattern')" container="body">&#9888;{{messages['pattern']}}</li>
+
+    <li *ngIf="instance.hasError('passwordMismatch')" container="body">&#9888;{{messages['passwordMismatch']}}</li>
+
+  </div></ng-container>

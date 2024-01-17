@@ -37,15 +37,15 @@ export class LoginComponent implements OnInit {
 
     this.formLogin = this.formBuilder.group({
       login: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['',[Validators.required, Validators.minLength(5)]],
     })
 
     this.formNewLogin = this.formBuilder.group({
       name: ['',[Validators.required]],
       email: ['',[Validators.required, Validators.email]],
       login: ['',[Validators.required]],
-      password: ['',[Validators.required]],
-      password_confirmation: ['', [Validators.required, this.passwordMatchValidator.bind(this)]],
+      password: ['',[Validators.required, Validators.minLength(5)]],
+      password_confirmation: ['', [Validators.required, Validators.minLength(5), this.passwordMatchValidator.bind(this)]],
     })
 
   }

@@ -5,20 +5,20 @@ import { RouterModule } from '@angular/router';
 import { RoutesStore } from './store.routes'
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MeComponent } from './pages/me/me.component';
-import { MePipe } from 'src/app/pipes/me.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    RoutesStore
+    RoutesStore,
+    SharedModule
   ],
   declarations: [
     StoreComponent,
     DashboardComponent,
     MeComponent,
-    MePipe
   ]
 })
 export class StoreModule { }

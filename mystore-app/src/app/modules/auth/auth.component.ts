@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'auth',
-  template: "<router-outlet></router-outlet>"
+  template: `<router-outlet></router-outlet>`,
 })
 export class AuthComponent implements OnInit {
 
@@ -10,5 +10,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

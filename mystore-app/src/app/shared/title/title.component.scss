@@ -1,0 +1,26 @@
+.title{
+    // color: #545353;
+    font-weight: bold;
+}
+
+.subtitle{
+    opacity: .7;
+}
+
+.title,.subtitle{
+    &.fs1{
+        font-size: 2rem;    }
+    &.fs2{
+        font-size: 1.5rem;
+    }
+    &.fs3{
+        font-size: 1.3rem;
+    }
+    &.fs4{
+        font-size: 1.1rem;
+    }
+    &.fs5{
+        font-size: 0.8rem;
+    }
+}
+

@@ -1,0 +1,45 @@
+<div class="container">
+  
+  <div class="row mb-3 mt-3">
+
+    <div class="col-4 p-0">
+      <div class="d-flex justify-content-center">
+        <div class="user_photo shadow"
+          style="background-image: url('https://gravatar.com/userimage/244912812/ca1aa416959b0e11b41d6c2dfbfb9c1b.jpeg?size=256'); background-size: cover;">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-7 d-flex align-items-center">
+      <div class="d-flex justify-content-center flex-column  w-100">
+        <div class="name text-truncate">
+          {{ "name" | me }}
+        </div>
+        <div class="job text-truncate">
+          Web Developer
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col justify-content-center d-flex">
+
+      <button class="btn btn-sm btn-outline-danger border-0" routerLink="/auth/logout"><i
+          class="fa-solid fa-right-from-bracket"></i> Sair</button>
+
+      <button class="btn btn-sm btn-outline-secondary border-0" routerLink="/meus-dados"><i
+          class="fa-solid fa-address-book"></i> Meus dados</button>
+
+      <button type="button" class="btn btn-sm mx-1 btn-primary border-0 position-relative">
+        <i class="fa-solid fa-bell"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          99+
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,8 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import "./bootstrap.min.css";
+@import "./_variables/colors.scss";
 
-@import './_variables/colors.scss';
+body {
+  background: $body-back-color;
+  height: 100vh;
+  font-family: "Quicksand", sans-serif;
+}
 
-
-body{
-    background: $body-back-color;
-    height: 100vh;
+router-outlet ~ * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }

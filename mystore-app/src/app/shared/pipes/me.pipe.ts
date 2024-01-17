@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AuthService } from '../modules/auth/auth.service';
+import { AuthService } from '../../modules/auth/auth.service';
 
 @Pipe({
   name: 'me'

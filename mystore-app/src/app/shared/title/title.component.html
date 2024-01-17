@@ -1,0 +1,16 @@
+<div class="row my-3">
+  <div class="col">
+
+    <small class="opacity-50" *ngIf="urlActual!='/' && breadcumb">
+      <a [routerLink]="['/']" routerLinkActive="router-link-active">
+       <i routerlink="/" class="fa-solid fa-house-user"></i>
+      </a>
+       {{urlActual}}
+      </small>
+
+   <div class="d-flex flex-column border-bottom border-secondary-subtle pb-2">
+     <span [ngClass]="titleLevel" class='title' [innerHTML]="title"></span>
+     <span [ngClass]="subTitleLevel" class='subtitle' *ngIf="subtitle" [innerHTML]="subtitle"></span>
+   </div>
+  </div>
+</div>

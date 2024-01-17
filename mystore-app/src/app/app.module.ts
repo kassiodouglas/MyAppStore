@@ -6,13 +6,19 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SidebaradvModule } from '@kassdoug/sidebaradv';
+import { LayoutDefaultComponent } from './layouts/layout-default/layout-default.component';
+import { HeaderComponent } from './layouts/layout-default/header/header.component';
+import { MePipe } from './shared/pipes/me.pipe';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent
+    AppComponent,    
+    LayoutDefaultComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +26,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     RoutesApp,
     NgbModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    SidebaradvModule,
+    SharedModule
   ],
   providers: [
     {
